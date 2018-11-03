@@ -1,33 +1,28 @@
-from flask import Flask , request, render_template
+import os
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 @app.route('/')
-@app.route('/<user>')
-def index(user=None):
-    return render_template("user.html", user=user)
-    #return 'Method used: %s' % request.method
+def index():
+    return render_template("index.html")
 
+@app.route('/upload', methods = ['POST'])
+def upload():
+    target = os.path.join(APP_ROOT, 'audio/')
+    print(target)
 
-@app.route('/lmao', methods = ['GET','POST'])
-def nerd():
-    if request.method == 'Post':
-        return "You are using POST"
-    return 'You are using GET'
+    if not os.path.isdir(target):
+        os.mkdir(target)
 
-
-@app.route('/profile/<username>')
-def profile(username):
-    return render_template("profile.html", name=username)
-
-
-
-@app.route('/post/<int:id>')
-def post(id):
-    return "Post Id: %s" % id
+    for file in request.files.getlist("file"):
+        filename = file.filename
+        print(filename)
+        destination = "/".join([target, filename])
+        file.save(destination)
+    return render_template("completed.html")
 
 
 if __name__  == "__main__":

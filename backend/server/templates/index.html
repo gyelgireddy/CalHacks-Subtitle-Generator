@@ -10,6 +10,12 @@
 </header>
 
 <body>
-	<button> Upload </button>
+	<h2> Upload Here </h2>
+
+	<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+	<input type = "file" name = "file" accept = "audio/*" multiple>
+	<input type = "submit" value = "send">
+	</form>
+
 </body>
 </html>
