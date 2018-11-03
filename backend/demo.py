@@ -67,8 +67,8 @@ for result in response.results:
     		bookend["end"] = "00:" + "00:" + str(end_time.seconds) + "," + str(int(end_time.nanos * 1e-8)) + "00"
     		print("\n")
     		print(i)
-    		print(bookend["start"] + "-->" + bookend["end"])
-    		for item in words:
+    		print(bookend["start"] + " --> " + bookend["end"])
+            for item in words:
     			print(item, end=' ')
     		words = []
     		i += 1
