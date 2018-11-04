@@ -1,7 +1,7 @@
 # CalHacks-Subtitle-Generator
 ======================
 
-**Tasks**
+Our first Hackathon invention!
 
 Frontend & Website by Elyse Garreau egarreau@berkeley.edu
 
