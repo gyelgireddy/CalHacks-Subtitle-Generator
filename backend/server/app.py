@@ -5,11 +5,14 @@ app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+speechLangDict = {'1': "one", '2': "two", '3': "three"}
+translateLangDict = {'4': "four", '5': "five", '6': "six"}
+
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", speechLangDict = speechLangDict, translateLangDict = translateLangDict)
 
-@app.route('/upload', methods = ['POST'])
+@app.route('/upload', methods = ['GET', 'POST'])
 def upload():
     target = os.path.join(APP_ROOT, 'audio/')
     print(target)
@@ -22,6 +25,12 @@ def upload():
         print(filename)
         destination = "/".join([target, filename])
         file.save(destination)
+
+    speechLangCode = speechLangDict.get(request.form.get('speechLang'))
+    translateLangCode = translateLangDict.get(request.form.get('translateLang'))
+    print(speechLangCode)
+    print(translateLangCode)
+
     return render_template("completed.html")
 
 
