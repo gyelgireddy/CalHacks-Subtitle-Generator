@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
 	<title> Subtitle Generator </title>
-	<link rel="stylesheet" href="main.css">
+	<meta charset="utf-8">
+	<link rel="stylesheet"  type="text/css" href="{{ url_for('static',filename='main.css')}}">
+
 </head>
 
 <header>
@@ -10,7 +12,15 @@
 </header>
 
 <body>
-	<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+
+
+<div class= "container-fluid">
+		<nav role="navigation">
+
+
+
+
+	<form id="buttons" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
 
 
 		<h2> Choose language that audio file is in. </h2>
@@ -29,12 +39,22 @@
 		</select>
 
 
-		<h4> Upload Here </h4>
-		<input type = "file" name = "file" accept = "audio/*" multiple>
+		<div id="uploadvideo" class="bar-colors-borders">
+			<input type = "file" name = "file" accept = "audio/*" multiple>
+
+			<input type = "submit" value = "send">
 
 
-		<input type = "submit" value = "send">
+			<div class="uploadFileprompt">
+		    	<div class="span_left"> </div>
+		    	<div class="span_right"></div>
+			</div>
+		</div>
 	</form>
+
+
+	</nav>
+</div>
 
 </body>
 </html>

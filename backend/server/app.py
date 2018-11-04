@@ -20,6 +20,7 @@ def upload():
     if not os.path.isdir(target):
         os.mkdir(target)
 
+
     for file in request.files.getlist("file"):
         filename = file.filename
         print(filename)
