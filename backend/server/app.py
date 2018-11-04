@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request
+from server.text.speech_to_text import transcribeAudio
 
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ def upload():
     if not os.path.isdir(target):
         os.mkdir(target)
 
-
+    filename = 1
     for file in request.files.getlist("file"):
         filename = file.filename
         print(filename)
@@ -31,6 +32,8 @@ def upload():
     translateLangCode = translateLangDict.get(request.form.get('translateLang'))
     print(speechLangCode)
     print(translateLangCode)
+
+    transcribeAudio(filename)
 
     return render_template("completed.html")
 
