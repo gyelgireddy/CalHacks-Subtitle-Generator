@@ -1,10 +1,22 @@
 import io
 import os
+import subprocess
 
 # Imports the Google Cloud client library
 from google.cloud import speech
 from google.cloud.speech import enums
 from google.cloud.speech import types
+
+
+#Convert video file to .wav 
+command = "ffmpeg -i 61A-H.mp4 -ab 160k -ac 1 -ar 44100 -vn 61a.wav"
+subprocess.call(command, shell=True)
+
+
+
+
+
+
 
 # Instantiates a client
 client = speech.SpeechClient()
@@ -12,7 +24,6 @@ client = speech.SpeechClient()
 # The name of the audio file to transcribe
 file_name = os.path.join(
     os.path.dirname(__file__),
-    'resources',
     '61a.wav')
 
 # Loads the audio into memory
