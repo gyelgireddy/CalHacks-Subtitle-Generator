@@ -15,9 +15,6 @@ subprocess.call(command, shell=True)
 
 
 
-
-
-
 # Instantiates a client
 client = speech.SpeechClient()
 
@@ -39,6 +36,8 @@ config = types.RecognitionConfig(
 
 # Detects speech in the audio file
 response = client.recognize(config, audio)
+
+f = open("result.txt", "a")
 
 i = 1
 words = []
@@ -71,16 +70,17 @@ for result in response.results:
         start_time = word_info.start_time
         end_time = word_info.end_time
         words.append(word)
-        #print(words)
         if ((len(words) - 1) % 8) == 0:
             bookend["start"] = "00:" + "00:" + str(start_time.seconds) + "," + str(int(start_time.nanos * 1e-8)) + "00"
         elif (len(words) % 8) == 0:
             bookend["end"] = "00:" + "00:" + str(end_time.seconds) + "," + str(int(end_time.nanos * 1e-8)) + "00"
-            print("\n")
-            print(i)
-            print(bookend["start"] + " --> " + bookend["end"])
+            if (i > 1): 
+                f.write("\n")
+            f.write(str(i) + "\n")
+            f.write(bookend["start"] + " --> " + bookend["end"] + "\n")
             for item in words:
-                print(item, end=' ')
+                f.write(item + " ")
+            f.write("\n")
             words = []
             i += 1
         
