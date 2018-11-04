@@ -1,4 +1,4 @@
-CalHacks-Subtitle-Generator
+Cal Hacks 5.0: Subtitle Generator
 ======================
 
 Our first Hackathon invention!
