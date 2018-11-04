@@ -34,8 +34,8 @@ response = client.recognize(config, audio)
 i = 1
 words = []
 bookend = {
-    	"start": None,
-    	"end": None
+        "start": None,
+        "end": None
     }
     
 for result in response.results:
@@ -58,22 +58,22 @@ for result in response.results:
 
 
     for word_info in alternative.words:
-    	word = word_info.word
-    	start_time = word_info.start_time
-    	end_time = word_info.end_time
-    	words.append(word)
-    	#print(words)
-    	if ((len(words) - 1) % 8) == 0:
-    		bookend["start"] = "00:" + "00:" + str(start_time.seconds) + "," + str(int(start_time.nanos * 1e-8)) + "00"
-    	elif (len(words) % 8) == 0:
-    		bookend["end"] = "00:" + "00:" + str(end_time.seconds) + "," + str(int(end_time.nanos * 1e-8)) + "00"
-    		print("\n")
-    		print(i)
-    		print(bookend["start"] + "-->" + bookend["end"])
-    		for item in words:
-    			print(item, end=' ')
-    		words = []
-    		i += 1
-    	
+        word = word_info.word
+        start_time = word_info.start_time
+        end_time = word_info.end_time
+        words.append(word)
+        #print(words)
+        if ((len(words) - 1) % 8) == 0:
+            bookend["start"] = "00:" + "00:" + str(start_time.seconds) + "," + str(int(start_time.nanos * 1e-8)) + "00"
+        elif (len(words) % 8) == 0:
+            bookend["end"] = "00:" + "00:" + str(end_time.seconds) + "," + str(int(end_time.nanos * 1e-8)) + "00"
+            print("\n")
+            print(i)
+            print(bookend["start"] + " --> " + bookend["end"])
+            for item in words:
+                print(item, end=' ')
+            words = []
+            i += 1
+        
 
 
